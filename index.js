@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
+let port = process.env.PORT || 5001;
 
 app.use(cors({
     origin: "*"
@@ -12,7 +13,7 @@ const productRouter = require('./src/routes/productsRoutes')
 app.use('/products', productRouter)
 
 mongoose.connect('mongodb+srv://anurag:anu12rag@cluster0.tlj6tnv.mongodb.net/?retryWrites=true&w=majority').then(()=>{
-    app.listen(3001, ()=>{
+    app.listen(port, ()=>{
         console.log('running on 3001 port');
     })
 }).catch((err)=>{
@@ -24,6 +25,6 @@ db.on('error', (error)=> console.error(error))
 db.once('open', ()=> console.log('Database is connected to backend'))
 
 app.get('/', (req, res)=>{
-    res.send('hello Anurag Sinha')
+    res.send('hello Anurag Kumar Sinha')
 })
 

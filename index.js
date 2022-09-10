@@ -1,18 +1,22 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
+const dotenv = require('dotenv')
 let port = process.env.PORT || 5001;
 
 app.use(cors({
     origin: "*"
 }))
 
+dotenv.config();
+
 const mongoose = require('mongoose')
 const productRouter = require('./src/routes/productsRoutes')
 
 app.use('/products', productRouter)
 
-mongoose.connect('mongodb+srv://anurag:anu12rag@cluster0.tlj6tnv.mongodb.net/?retryWrites=true&w=majority').then(()=>{
+
+mongoose.connect(process.env.MONGO_URL).then(()=>{
     app.listen(port, ()=>{
         console.log('running on 3001 port');
     })

@@ -7,7 +7,7 @@ const createProduct = async(req, res)=>{
         description: req.body.description,
         price: req.body.price,
         userId: req.userId,
-        image: req.body.image
+        image: req.file.filename
     })
 
         const postProduct = await newProduct.save();

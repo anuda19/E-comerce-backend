@@ -18,7 +18,7 @@ app.use('/products', productRouter)
 
 mongoose.connect(process.env.MONGO_URL).then(()=>{
     app.listen(port, ()=>{
-        console.log('running on 3001 port');
+        console.log('running on 5001 port');
     })
 }).catch((err)=>{
     console.log(err);

@@ -1,13 +1,12 @@
 const productModel = require('../model/products')
-
 const createProduct = async(req, res)=>{
     try {
     const newProduct = new productModel({
         title: req.body.title,
-        description: req.body.description,
-        price: req.body.price,
-        userId: req.userId,
-        image: req.body.image
+        desc: req.body.desc,
+        imgUrl: req.body.imgUrl,
+        category: req.body.category,
+        productUrl: req.body.productUrl
     })
 
         const postProduct = await newProduct.save();
@@ -29,7 +28,7 @@ const getProduct = async(req, res)=>{
 const deleteProduct = async(req, res)=>{
     const id = req.params.id;
     try {
-        const product = await productModel.findByIdAndRemoe(id)
+        const product = await productModel.findByIdAndRemove(id)
         res.status(202).json(product)
     } catch (error) {
         console.log(error);
@@ -42,10 +41,12 @@ const putProduct = async(req, res)=>{
     const updatedProduct = {
         title: title,
         description: description,
-        userId: req.userId
+        imgUrl: req.body.imgUrl,
+        category: req.body.category,
+        productUrl: req.body.productUrl
     }
     try {
-        await productModel.findByIdAndUpdate(id, updatedProduct, {new: true})
+        await productModel.findByIdAndUpdate(id, updatedProduct)
         res.status(200).json(updatedProduct)
     } catch (error) {
         console.log(error);
